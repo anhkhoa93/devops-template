@@ -1,0 +1,55 @@
+ECR Repository Tag Should Be Immutable
+Endpoints Should Not Be Publicly Accessible
+ECS Tasks Should Have Network Mode Set To AWSVPC
+ECS Container Insights Should Be Enabled
+ECS Tasks Should Be Configured To Run As Non-Privileged
+ECS Should Have Readonly Access For Containers
+Secrets in Container Environment Variables
+ECS Task Definition Log Configuration Should Be Enabled
+ECS Task Definitions Has Memory Limit Set
+ECS Tasks Should Not Have Root As User
+ECS Tasks Should Not Have PidMode As Host
+ECS Tasks With Network Mode Host Should Have Limited Permissions
+EFS Access Point Should Enforce Root Directory
+EFS Access Points User Identity Should Be Enforced
+EKS Clusters Encryption Of Secrets Should Be Enabled
+Latest ECS Fargate Platform Version Should Be Set
+ECR Image Repositories Should Have A Lifecycle Policy Attached
+ECR Repositories Should Be Private
+Image Vulnerability Scanning Should Be Enabled For Amazon ECR
+EKS Clusters Should Have High Availability
+EKS Clusters Should Have Logging Enabled
+EKS Clusters Should Use The Latest Stable Version of Kubernetes
+EKS Cluster Should Allow Inbound Traffic only from Port 443(HTTPS)
+
+Leverage IAM for Authentication and Authorization (RBAC)
+•	Integrate EKS with IAM for granular access control. This eliminates the need for managing users directly at the API server level.
+•	Implement Role-Based Access Control (RBAC) within IAM. Define roles with specific permissions for different users and service accounts, minimizing access privileges.
+Secure the Control Plane
+•	Amazon EKS Fargate: Utilize EKS Fargate for managing worker nodes. This removes the burden of patching and maintaining worker nodes, reducing the attack surface.
+•	Network Isolation: Isolate the EKS control plane from your VPC using dedicated security groups and Network Access Control Lists (NACLs). Restrict inbound traffic only to authorized sources.
+•	Encryption: Enable encryption at rest for EKS cluster API server etcd using AWS Key Management Service (KMS). This protects sensitive cluster data even in case of breaches.
+Pod Security Policies (PSPs)
+•	Define strict Pod Security Policies to restrict what pods can do within the cluster. This includes limiting privileges, resource access, and network capabilities.
+•	Disallow privileged containers by default and only enable them when absolutely necessary.
+Network Security with CNI Plugins
+•	Choose a Container Network Interface (CNI) plugin that supports network policies. Cilium or Amazon VPC CNI are popular options that allow defining fine-grained network controls between pods and external services.
+•	Utilize Network Policy resources to restrict pod communication within the cluster and limit access to external resources.
+Secrets Management with AWS Secrets Manager
+•	Avoid embedding secrets (passwords, keys) directly in container images. Store them securely in AWS Secrets Manager and leverage Kubernetes Secrets Engine to inject them into pods at runtime. This minimizes the risk of exposing secrets in code or during image scanning.
+Vulnerability Management
+•	Implement a vulnerability scanning strategy for container images in your Amazon Elastic Container Registry (ECR) repositories. Aqua Scanner or Amazon Inspector are good options.
+•	Regularly scan your cluster nodes for vulnerabilities and patch them promptly. Consider automated patching solutions to streamline the process.
+CI/CD Pipeline Integration
+•	Integrate security checks into your CI/CD pipeline to identify and address vulnerabilities early in the development lifecycle.
+•	Enforce image scanning and policy checks before deploying container images to your EKS cluster.
+Enable Cluster Audit Logging
+•	Enable audit logging for the EKS control plane and API server to track user activity and potential security events.
+•	Integrate these logs with a centralized logging service like Amazon CloudWatch for analysis and anomaly detection.
+Monitoring and Alerting
+•	Utilize AWS CloudWatch or other monitoring tools to track cluster health metrics like CPU, memory usage, and pod status.
+•	Set up alerts for anomalies or suspicious activity like unexpected resource spikes or unauthorized access attempts.
+Maintain Least Privilege
+•	Apply the principle of least privilege across all aspects of your EKS environment. Users and service accounts should only have the minimum permissions required to perform their tasks.
+•	Regularly review and update access controls to ensure they remain aligned with user needs.
+
