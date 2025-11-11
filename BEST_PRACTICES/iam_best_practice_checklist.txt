@@ -1,0 +1,14 @@
+Require human users to use federation with an identity provider to access AWS using temporary credentials
+Require workloads to use temporary credentials with IAM roles to access AWS
+Require multi-factor authentication (MFA)
+Update access keys when needed for use cases that require long-term credentials
+Follow best practices to protect your root user credentials
+Apply least-privilege permissions
+Get started with AWS managed policies and move toward least-privilege permissions
+Use IAM Access Analyzer to generate least-privilege policies based on access activity
+Regularly review and remove unused users, roles, permissions, policies, and credentials
+Use conditions in IAM policies to further restrict access
+Verify public and cross-account access to resources with IAM Access Analyzer
+Use IAM Access Analyzer to validate your IAM policies to ensure secure and functional permissions
+Establish permissions guardrails across multiple accounts
+Use permissions boundaries to delegate permissions management within an account
